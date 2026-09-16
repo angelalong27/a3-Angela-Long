@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang='en'>
+  <head>
+    <title>CS4241 Assignment 2</title>
+    <meta charset='utf-8' />
+    <script src='/main.js'></script>
+    <link rel='stylesheet' href='/main.css' />
+    
+    <!-- get rid of favicon error -->
+    <link rel='icon' href='data:;base64,iVBORw0KGgo=' />
+  </head>
+  <body>
+
+    <h1>Reading Tracker</h1>
+    <form>
+      <label for='book'>Book:</label>
+      <input type='text' id='book' placeholder='Book title'>
+
+      <label for='author'>Author:</label>
+      <input type='text' id='author' placeholder='Author'>
+
+      <label for='pagesRead'>Pages Read:</label>
+      <input type='number' id='pagesRead' placeholder='Pages Read'>
+
+      <label for='totalPages'>Total Pages:</label>
+      <input type='number' id='totalPages' placeholder='Total Pages'>
+
+      <button class="submitButton">Submit</button>
+    </form>
+
+    <h2>Currently Reading</h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Book</th>
+          <th>Author</th>
+          <th>Pages Read</th>
+          <th>Total Pages</th>
+          <th>Percentage Read</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+
+      <tbody id='readingList'>
+      </tbody>
+    </table>
+
+
+  </body>
+</html>
