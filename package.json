@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/angelalong27/a3-Angela-Long#readme",
   "dependencies": {
+    "bcryptjs": "^3.0.3",
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
     "mongodb": "^7.6.0"

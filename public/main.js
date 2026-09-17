@@ -73,8 +73,12 @@ const editBook = function( index, id, data ) {
 }
 
 const deleteBook = async function( id ) {
-    const json = { _id: id }, 
-    body = JSON.stringify( json )
+  const json = { 
+    _id: id,
+    userId: localStorage.getItem('userId')
+  }, 
+  
+  body = JSON.stringify( json )
   
   const response = await fetch( '/delete', {
     method:'POST',
@@ -110,7 +114,9 @@ const submit = async function( event ) {
           status: status.value, 
           format: format ? format.value : '', 
           rating: rating ? rating.value : '', 
-          notes: notes.value, _id: editId 
+          notes: notes.value, 
+          userId: localStorage.getItem('userId'),
+          _id: editId
         },
         body = JSON.stringify( json )
 
@@ -133,18 +139,17 @@ const submit = async function( event ) {
 }
 
 const loadBooks = async function() {
-  const response = await fetch( '/data' )
+  const userId = localStorage.getItem('userId')
+  const response = await fetch( `/data?userId=${userId}` )
   const text = await response.text()
-
-  console.log( 'data:', text )
 
   const data = JSON.parse( text )
   displayBooks( data )
 }
 
 window.onload = function() {
-  const button = document.querySelector('button')
-  button.onclick = submit
+  const form = document.querySelector('form')
+  form.onsubmit = submit
 
   loadBooks()
 }

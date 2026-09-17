@@ -2,16 +2,19 @@ require('dotenv').config()
 
 const express = require('express'),
 { MongoClient, ObjectId } = require('mongodb'),
+bcrypt = require('bcryptjs'),
 app = express()
 
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.PASS}@${process.env.HOST}/?retryWrites=true&w=majority`
 const client = new MongoClient(uri)
 
 let collection = null
+let users = null
 
 async function connect() {
     await client.connect()
     collection = await client.db("readingtracker").collection("books")
+    users = await client.db("readingtracker").collection("users")
 }
 
 connect()
@@ -20,7 +23,7 @@ app.use( express.static( 'public') )
 app.use( express.json() )
 
 app.use((req, res, next) => {
-    if (collection !== null) {
+    if (collection !== null && users !== null) {
         next()
     } else {
         res.status(503).send()
@@ -28,8 +31,49 @@ app.use((req, res, next) => {
 })
 
 app.get('/data', async (req, res) => {
-    const books = await collection.find({}).toArray()
+    const userId = req.query.userId
+
+    const books = await collection.find({
+        userId: userId
+    }).toArray()
+    
     res.json(books)
+})
+
+app.post('/login', async (req, res) => {
+    const username = req.body.username
+    const password = req.body.password
+    
+    let user = await users.findOne({ username: username })
+    
+    if (user === null) {
+        const hashedPassword = await bcrypt.hash(password, 10)
+
+        const result = await users.insertOne({
+            username: username,
+            password: hashedPassword
+        })
+        
+        res.json({
+            success: true,
+            created: true,
+            userId: result.insertedId
+        })
+    } else {
+        const passwordMatches = await bcrypt.compare(password, user.password)
+
+        if(passwordMatches) {
+            res.json({
+                success: true,
+                created: false,
+                userId: user._id
+        })
+    } else {
+        res.json({
+            success: false
+        })
+    }
+}
 })
 
 app.post('/submit', async (req, res) => {
@@ -47,7 +91,8 @@ app.post('/submit', async (req, res) => {
 
 app.post('/delete', async (req, res) => {
     const result = await collection.deleteOne({
-        _id: new ObjectId(req.body._id)
+        _id: new ObjectId(req.body._id),
+        userId: req.body.userId
     })
 
     res.json(result)
@@ -55,7 +100,9 @@ app.post('/delete', async (req, res) => {
 
 app.post('/update', async (req, res) => {
     const result = await collection.updateOne(
-        { _id: new ObjectId(req.body._id) },
+        { 
+            _id: new ObjectId(req.body._id),
+            userId: req.body.userId },
         {
             $set: {
                 book: req.body.book,
