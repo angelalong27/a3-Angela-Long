@@ -48,6 +48,24 @@ const editBook = function( index, id, data ) {
   document.querySelector( '#author' ).value = data[index].author
   document.querySelector( '#pagesRead' ).value = data[index].pagesRead
   document.querySelector( '#totalPages' ).value = data[index].totalPages
+  document.querySelector( '#status' ).value = data[index].status
+  document.querySelector( '#notes' ).value = data[index].notes
+
+  const format = document.querySelector(
+    `input[name="format"][value="${data[index].format}"]`
+  )
+
+  if ( format ) {
+    format.checked = true
+  }
+
+  const rating = document.querySelector(
+    `input[name="rating"][value="${data[index].rating}"]`
+  )
+
+  if ( rating ) {
+    rating.checked = true
+  }
 }
 
 const deleteBook = async function( id ) {
@@ -76,8 +94,20 @@ const submit = async function( event ) {
         author = document.querySelector( '#author' ),
         pagesRead = document.querySelector( '#pagesRead' ),
         totalPages = document.querySelector( '#totalPages' ),
+        status = document.querySelector( '#status' ),
+        format = document.querySelector( 'input[name="format"]:checked' ),
+        rating = document.querySelector( 'input[name="rating"]:checked' ),
+        notes = document.querySelector( '#notes' ),
 
-        json = { book: book.value, author: author.value, pagesRead: pagesRead.value, totalPages: totalPages.value, _id: editId },
+        json = { book: book.value, 
+          author: author.value, 
+          pagesRead: pagesRead.value, 
+          totalPages: totalPages.value, 
+          status: status.value, 
+          format: format ? format.value : '', 
+          rating: rating ? rating.value : '', 
+          notes: notes.value, _id: editId 
+        },
         body = JSON.stringify( json )
 
     let route = '/submit'

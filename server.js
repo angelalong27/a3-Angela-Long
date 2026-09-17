@@ -5,7 +5,6 @@ const express = require('express'),
 app = express()
 
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.PASS}@${process.env.HOST}/?retryWrites=true&w=majority`
-console.log('uri:', uri)
 const client = new MongoClient(uri)
 
 let collection = null
@@ -35,6 +34,7 @@ app.get('/data', async (req, res) => {
 
 app.post('/submit', async (req, res) => {
     const newBook = req.body
+    delete newBook._id
 
     newBook.percentComplete = Math.round(
         (newBook.pagesRead / newBook.totalPages) * 100
@@ -62,14 +62,17 @@ app.post('/update', async (req, res) => {
                 author: req.body.author,
                 pagesRead: req.body.pagesRead,
                 totalPages: req.body.totalPages,
+                status: req.body.status,
+                format: req.body.format,
+                rating: req.body.rating,
+                notes: req.body.notes,
                 percentComplete: Math.round(
                     (req.body.pagesRead / req.body.totalPages) * 100
                 )
             }
         }
     )
-
     res.json(result)
 })
-
+                
 app.listen(process.env.PORT || 3000)
