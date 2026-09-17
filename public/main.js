@@ -15,6 +15,10 @@ const displayBooks = function( data ) {
     <td>${book.pagesRead}</td>
     <td>${book.totalPages}</td>
     <td>${book.percentComplete}%</td>
+    <td>${book.status}</td>
+    <td>${book.format}</td>
+    <td>${book.rating}</td>
+    <td>${book.notes}</td>
     <td>
     <button class="editButton" data-id="${book._id}" data-index="${index}">Edit</button>
     <button class="deleteButton" data-id="${book._id}">Delete</button>

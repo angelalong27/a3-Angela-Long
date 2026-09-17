@@ -42,9 +42,14 @@ body {
     font-size: 16px;
   }
   
-  .editButton, .deleteButton {
+  .editButton {
     cursor: pointer;
-    padding: 5px 15px;
+    padding: 5px 17.5px;
+  }
+
+  .deleteButton {
+    cursor: pointer;
+    padding: 5px 10px;
   }
 
   textarea {
