@@ -20,8 +20,8 @@ const displayBooks = function( data ) {
     <td>${book.rating}</td>
     <td>${book.notes}</td>
     <td>
-    <button class="editButton" data-id="${book._id}" data-index="${index}">Edit</button>
-    <button class="deleteButton" data-id="${book._id}">Delete</button>
+    <button class="btn btn-primary btn-sm editButton" data-id="${book._id}" data-index="${index}">Edit</button>
+    <button class="btn btn-secondary btn-sm deleteButton" data-id="${book._id}">Delete</button>
     </td>
     </tr>`
   })
