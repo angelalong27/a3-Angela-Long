@@ -104,8 +104,13 @@ const submit = async function( event ) {
         totalPages = document.querySelector( '#totalPages' ),
         status = document.querySelector( '#status' ),
         format = document.querySelector( 'input[name="format"]:checked' ),
+        genres = document.querySelectorAll( 'input[name="genre"]:checked' ),
         rating = document.querySelector( 'input[name="rating"]:checked' ),
         notes = document.querySelector( '#notes' ),
+
+        genre = Array.from( genres ).map( function( checkbox ) {
+          return checkbox.value
+        }),
 
         json = { book: book.value, 
           author: author.value, 
@@ -113,6 +118,7 @@ const submit = async function( event ) {
           totalPages: totalPages.value, 
           status: status.value, 
           format: format ? format.value : '', 
+          genre: genre,
           rating: rating ? rating.value : '', 
           notes: notes.value, 
           userId: localStorage.getItem('userId'),

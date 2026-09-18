@@ -51,30 +51,67 @@
               <input type='radio' id='audiobook' name='format' value='Audiobook' class="form-check-input">
               <label for='audiobook' class="form-check-label">Audiobook</label>
             </fieldset>
-        
-          <fieldset>
-            <legend>Rating:</legend>
 
-            <input type='radio' id='rating1' name='rating' value='1' class="form-check-input">
-            <label for='rating1' class="form-check-label">1</label>
+            <fieldset>
+              <legend>Genre:</legend>
+              
+              <div class="form-check">
+                <input type="checkbox" id="fantasy" name="genre" value="Fantasy" class="form-check-input">
+                <label for="fantasy" class="form-check-label">Fantasy</label>
+              </div>
 
-            <input type='radio' id='rating2' name='rating' value='2' class="form-check-input">
-            <label for='rating2' class="form-check-label">2</label>
-
-            <input type='radio' id='rating3' name='rating' value='3' class="form-check-input">
-            <label for='rating3' class="form-check-label">3</label>
-
-            <input type='radio' id='rating4' name='rating' value='4' class="form-check-input">
-            <label for='rating4' class="form-check-label">4</label>
+              <div class="form-check">
+                <input type="checkbox" id="romance" name="genre" value="Romance" class="form-check-input">
+                <label for="romance" class="form-check-label">Romance</label>
+              </div>
             
-            <input type='radio' id='rating5' name='rating' value='5' class="form-check-input">
-            <label for='rating5' class="form-check-label">5</label>
-          </fieldset>
-          
-          <label for='notes'>Notes / Review:</label>
-          <textarea id='notes' class="form-control" placeholder='Write your thoughts about the book'></textarea>
-          
-          <button type="submit" class="btn btn-primary submitButton">Submit</button>
+              <input type="checkbox" id="mystery" name="genre" value="Mystery" class="form-check-input">
+              <label for="mystery" class="form-check-label">Mystery</label>
+            
+              <div class="form-check">
+                <input type="checkbox" id="thriller" name="genre" value="Thriller" class="form-check-input">
+                <label for="thriller" class="form-check-label">Thriller</label>
+              </div>
+            
+              <div class="form-check">
+                <input type="checkbox" id="science-fiction" name="genre" value="Science Fiction" class="form-check-input">
+                <label for="science-fiction" class="form-check-label">Science Fiction</label>
+              </div>
+              
+              <div class="form-check">
+                <input type="checkbox" id="nonfiction" name="genre" value="Nonfiction" class="form-check-input">
+                <label for="nonfiction" class="form-check-label">Nonfiction</label>
+              </div>
+            
+              <div class="form-check">
+                <input type="checkbox" id="other" name="genre" value="Other" class="form-check-input">
+                <label for="other" class="form-check-label">Other</label>
+              </div>
+            </fieldset>
+            
+            <fieldset>
+              <legend>Rating:</legend>
+              
+              <input type='radio' id='rating1' name='rating' value='1' class="form-check-input">
+              <label for='rating1' class="form-check-label">1</label>
+
+              <input type='radio' id='rating2' name='rating' value='2' class="form-check-input">
+              <label for='rating2' class="form-check-label">2</label>
+
+              <input type='radio' id='rating3' name='rating' value='3' class="form-check-input">
+              <label for='rating3' class="form-check-label">3</label>
+
+              <input type='radio' id='rating4' name='rating' value='4' class="form-check-input">
+              <label for='rating4' class="form-check-label">4</label>
+            
+              <input type='radio' id='rating5' name='rating' value='5' class="form-check-input">
+              <label for='rating5' class="form-check-label">5</label>
+            </fieldset>
+            
+            <label for='notes'>Notes / Review:</label>
+            <textarea id='notes' class="form-control" placeholder='Write your thoughts about the book'></textarea>
+            
+            <button type="submit" class="btn btn-primary submitButton">Submit</button>
         </form>
       </div>
     </div>
