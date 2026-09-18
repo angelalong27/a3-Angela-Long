@@ -17,6 +17,7 @@ const displayBooks = function( data ) {
     <td>${book.percentComplete}%</td>
     <td>${book.status}</td>
     <td>${book.format}</td>
+    <td>${book.genre ? book.genre.join(', ') : ''}</td>
     <td>${book.rating}</td>
     <td>${book.notes}</td>
     <td>
@@ -62,6 +63,14 @@ const editBook = function( index, id, data ) {
   if ( format ) {
     format.checked = true
   }
+
+  const genres = document.querySelectorAll( 'input[name="genre"]' )
+  
+  genres.forEach( function( genre ) {
+  genre.checked = data[index].genre
+    ? data[index].genre.includes( genre.value )
+    : false
+  })
 
   const rating = document.querySelector(
     `input[name="rating"][value="${data[index].rating}"]`

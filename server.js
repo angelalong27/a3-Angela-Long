@@ -111,6 +111,7 @@ app.post('/update', async (req, res) => {
                 totalPages: req.body.totalPages,
                 status: req.body.status,
                 format: req.body.format,
+                genre: req.body.genre,
                 rating: req.body.rating,
                 notes: req.body.notes,
                 percentComplete: Math.round(
