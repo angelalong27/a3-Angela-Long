@@ -1,6 +1,6 @@
 ## Reading Tracker
 
-A link to your project running on render.
+https://a3-angela-long.onrender.com
 
 The goal of my application is to create a Reading Tracker where users can keep track of the books they are reading, want to read, or have read. One challenge I faced was connecting my application to MongoDB and making sure the correct data was saved for each user, while also making sure adding, editing, and deleting books still worked. For authentication, I created a username and password login system where a new account is created if the username does not already exist. Passwords are hashed using bcryptjs before being stored in MongoDB. I chose this strategy because it was a simple way to create accounts and keep each user's book data separate. For my CSS framework, I used Bootstrap because it made it easier to style the application and keep the design consistent. I used Bootstrap for the forms, buttons, tables, cards, alerts, and layout, and added my own CSS to customize the colors, fonts, spacing, and table styling.
 
