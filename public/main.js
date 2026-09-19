@@ -149,6 +149,9 @@ const submit = async function( event ) {
 
   await response.json()
 
+  const successMessage = document.querySelector( '#successMessage' )
+  successMessage.classList.remove( 'd-none' )
+
   editId = null
   loadBooks()
 }
