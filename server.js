@@ -3,6 +3,11 @@ require('dotenv').config()
 const express = require('express'),
 { MongoClient, ObjectId } = require('mongodb'),
 bcrypt = require('bcryptjs'),
+compression = require('compression'),
+cookieParser = require('cookie-parser'),
+cors = require('cors'),
+morgan = require('morgan'),
+responseTime = require('response-time'),
 app = express()
 
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.PASS}@${process.env.HOST}/?retryWrites=true&w=majority`
@@ -19,6 +24,11 @@ async function connect() {
 
 connect()
 
+app.use(compression())
+app.use(cookieParser())
+app.use(cors())
+app.use(morgan('dev'))
+app.use(responseTime())
 app.use( express.static( 'public') )
 app.use( express.json() )
 
